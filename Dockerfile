@@ -12,7 +12,6 @@ WORKDIR /app
 COPY sensitivity.py .
 
 RUN useradd -r -s /usr/sbin/nologin -d /app app && chown app:app /app
-RUN python -c 'import seaborn'  # Prime Matplotlib font cache
 EXPOSE 8501:8501/tcp
 USER app:app
 ENTRYPOINT [ \
