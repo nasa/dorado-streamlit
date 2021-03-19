@@ -14,3 +14,5 @@ $ docker build . -t dorado-streamlit
 $ docker run --rm dorado-streamlit
 
 And then navigate to http://127.0.0.1:8051/.
+
+![Screenshot of exposure time calculator](screenshot.png)
