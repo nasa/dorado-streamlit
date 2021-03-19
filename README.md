@@ -1,8 +1,9 @@
 # Dorado web tools in Streamlit
 
-This repository contains observer web tools for the Dorado mission. It uses
-[Streamlit](https://streamlit.io), a tool for easily turning Python code into
-interactive data-driven web apps.
+This repository contains observer web tools for the Dorado mission, including
+an interactive exposure time calculator. It is built using
+[Streamlit](https://streamlit.io), a framework for easily turning Python code
+into interactive data-driven web apps.
 
 ## To build
 
