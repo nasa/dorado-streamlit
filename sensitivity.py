@@ -16,13 +16,8 @@ import streamlit as st
 
 This interactive exposure time calculator computes the 5-sigma limiting
 magnitude of Dorado as a function of exposure time for a variety of source
-spectral models and background conditions.
-
-Advanced users may prefer to use the open-source Python backend,
-`dorado-sensitivity` (https://github.com/nasa/dorado-sensitivity), which can be
-installed using Pip:
-
-    $ pip install dorado-sensitivity
+spectral models and background conditions. Advanced users may prefer the
+[open-source Python backend](https://github.com/nasa/dorado-sensitivity).
 """
 
 bandpass = dorado.sensitivity.bandpasses.NUV_D
@@ -95,10 +90,12 @@ df = pd.DataFrame({
     'limmag': dorado.sensitivity.get_limmag(source, exptime=exptime, snr=5, coord=coord, time=time, night=night).to_value(u.ABmag)
 })
 
-st.altair_chart(alt.Chart(df).mark_line().encode(
+col1, col2 = st.beta_columns([2, 1])
+
+col1.altair_chart(alt.Chart(df).mark_line().encode(
     alt.X('exptime', title='Exposure time (min)'),
     alt.Y('limmag', scale=alt.Scale(zero=False, reverse=True), title='Limiting magnitude (AB)'),
     tooltip=['exptime', 'limmag']
 ))
 
-st.dataframe(df)
+col2.dataframe(df)
