@@ -1,6 +1,7 @@
 FROM python:slim AS deps
+RUN pip install --no-cache-dir poetry
 COPY pyproject.toml poetry.lock .
-RUN pip install --no-cache-dir poetry && poetry export --without-hashes -o requirements.txt
+RUN poetry export --without-hashes -o requirements.txt
 
 FROM python
 COPY --from=deps requirements.txt .
