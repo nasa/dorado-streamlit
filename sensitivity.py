@@ -10,7 +10,6 @@ import pandas as pd
 import seaborn
 import synphot
 import streamlit as st
-from synphot.spectrum import SourceSpectrum
 
 """
 # Dorado Sensitivity Calculator
