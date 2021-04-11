@@ -1,6 +1,6 @@
 FROM python:slim AS deps
 RUN pip install --no-cache-dir poetry
-COPY pyproject.toml poetry.lock .
+COPY pyproject.toml poetry.lock ./
 RUN poetry export --without-hashes -o requirements.txt
 
 FROM python
