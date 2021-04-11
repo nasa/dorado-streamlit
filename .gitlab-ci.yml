@@ -1,0 +1,41 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  GIT_SSL_NO_VERIFY: "1"
+  DOCKER_AUTH_CONFIG: $DOCKER_AUTH_CONFIG
+
+dev build:
+  stage: build
+  tags: [dev]
+
+  before_script:
+    - mkdir $HOME/.docker
+    - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
+    
+  script:
+    - $DOCKER_BUILD
+  when: on_success
+
+dev push:
+  stage: deploy
+  tags: [dev]
+  script:
+    - $DOCKER_PUSH
+  when: on_success
+
+dev deploy:
+  stage: deploy
+  tags: [dev]
+  script:
+    - $UPDATE_SERVICE
+  when: on_success
+
+## Support for production auto deployments coming soon
+#prod deploy:
+#  stage: deploy
+#  tags: [prod]
+#  script:
+#    - $UPDATE_SERVICE
+#  when: manual
